@@ -188,6 +188,33 @@ pub fn rendered_width(s: &str) -> usize {
     char_widths + gaps
 }
 
+/// Scale rendered glyph lines by a factor.
+/// Each character is repeated `factor` times horizontally,
+/// and each line is repeated `factor` times vertically.
+pub fn scale_lines(lines: &[String], factor: u32) -> Vec<String> {
+    if factor <= 1 {
+        return lines.to_vec();
+    }
+    let mut scaled = Vec::with_capacity(lines.len() * factor as usize);
+    for line in lines {
+        let wide: String = line.chars().flat_map(|ch| std::iter::repeat_n(ch, factor as usize)).collect();
+        for _ in 0..factor {
+            scaled.push(wide.clone());
+        }
+    }
+    scaled
+}
+
+/// Compute the scaled rendered width for a string.
+pub fn scaled_rendered_width(s: &str, factor: u32) -> usize {
+    rendered_width(s) * factor as usize
+}
+
+/// Compute the scaled glyph height.
+pub fn scaled_glyph_height(factor: u32) -> usize {
+    GLYPH_HEIGHT * factor as usize
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
