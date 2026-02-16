@@ -146,27 +146,31 @@ pub fn char_width(ch: char) -> usize {
 
 /// Render a time string into a 2D grid of characters.
 /// Returns a Vec of GLYPH_HEIGHT strings, each being the full width of the rendered text.
-pub fn render_time_string(s: &str) -> Vec<String> {
+/// When `hide_colons` is true, colon positions are rendered as blank spaces of the same width,
+/// preserving the overall layout.
+pub fn render_time_string(s: &str, hide_colons: bool) -> Vec<String> {
     let mut lines: Vec<String> = vec![String::new(); GLYPH_HEIGHT];
 
     for (i, ch) in s.chars().enumerate() {
-        let g = glyph(ch);
-        for (row, line) in lines.iter_mut().enumerate() {
-            if row < g.len() {
-                line.push_str(g[row]);
-            }
-        }
-        // Add 1-col gap between characters (except colon neighbors have tighter spacing)
-        if i + 1 < s.len() {
-            let gap = if ch == ':' || s.chars().nth(i + 1) == Some(':') {
-                1
-            } else {
-                1
-            };
+        if hide_colons && ch == ':' {
+            // Render blank space with the same width as a colon glyph
             for line in lines.iter_mut() {
-                for _ in 0..gap {
+                for _ in 0..COLON_WIDTH {
                     line.push(' ');
                 }
+            }
+        } else {
+            let g = glyph(ch);
+            for (row, line) in lines.iter_mut().enumerate() {
+                if row < g.len() {
+                    line.push_str(g[row]);
+                }
+            }
+        }
+        // Add 1-col gap between characters
+        if i + 1 < s.len() {
+            for line in lines.iter_mut() {
+                line.push(' ');
             }
         }
     }
@@ -198,7 +202,7 @@ mod tests {
 
     #[test]
     fn test_render_time_string_height() {
-        let lines = render_time_string("12:34");
+        let lines = render_time_string("12:34", false);
         assert_eq!(lines.len(), GLYPH_HEIGHT);
     }
 
@@ -229,5 +233,18 @@ mod tests {
         let g = glyph('0');
         assert_eq!(g[0], "█▀▀▀█");
         assert_eq!(g[4], "█▄▄▄█");
+    }
+
+    #[test]
+    fn test_hide_colons_preserves_width() {
+        let visible = render_time_string("12:34:56", false);
+        let hidden = render_time_string("12:34:56", true);
+        for row in 0..GLYPH_HEIGHT {
+            assert_eq!(
+                visible[row].chars().count(),
+                hidden[row].chars().count(),
+                "row {row} width differs between visible and hidden colons"
+            );
+        }
     }
 }
