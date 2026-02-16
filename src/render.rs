@@ -48,15 +48,9 @@ impl<'a> Widget for ClockWidget<'a> {
         let now = Local::now();
         let time_str = now.format(&app.time_format).to_string();
 
-        // If blink mode, replace ':' with ' ' when not visible
-        let display_str = if app.blink && !app.blink_visible {
-            time_str.replace(':', " ")
-        } else {
-            time_str.clone()
-        };
-
-        let lines = font::render_time_string(&display_str);
-        let text_width = font::rendered_width(&display_str) as u16;
+        let hide_colons = app.blink && !app.blink_visible;
+        let lines = font::render_time_string(&time_str, hide_colons);
+        let text_width = font::rendered_width(&time_str) as u16;
         let text_height = font::GLYPH_HEIGHT as u16;
 
         // Center the clock, slightly above center
