@@ -12,8 +12,9 @@ Press `q` or `Esc` to quit.
 
 ## Features
 
-- Big block-character digits (7-segment style)
+- Big block-character digits (7-segment style) with adjustable size (`--size 1`-`5`)
 - 12/24-hour format, optional seconds, blinking colon
+- Custom time format via `--format` (chrono syntax)
 - Date display
 - 4 color themes: **void** (cyan), **nebula** (pink), **luna** (silver), **solar** (gold)
 - Custom accent color via `--color '#hex'` or named colors
@@ -21,6 +22,7 @@ Press `q` or `Esc` to quit.
 - Shooting star effect (rare, tasteful)
 - Scanline overlay for CRT/anime feel
 - Deterministic visuals with `--seed`
+- Scripted demo loop with `--demo`
 - Handles terminal resize gracefully
 - Panic-safe terminal restoration
 - Optional debug logging to file
@@ -40,11 +42,20 @@ stardial --theme nebula --blink --no-seconds
 # Custom color, dense stars
 stardial --color '#ff6ac1' --stars 80
 
+# Larger clock face (2x)
+stardial --size 2
+
+# Custom time format (chrono syntax)
+stardial --format '%H:%M'
+
 # Plain clock, no effects
 stardial --no-effects
 
 # Deterministic starfield for screenshots
 stardial --seed 42 --fps 24
+
+# Run scripted demo loop
+stardial --demo
 
 # Debug logging
 stardial --log /tmp/stardial.log
