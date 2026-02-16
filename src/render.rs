@@ -268,4 +268,22 @@ mod tests {
         let app = App::new(&args, 20, 5);
         let _output = render_to_string(&app, 20, 5);
     }
+
+    #[test]
+    fn test_render_scaled_size_2() {
+        let mut args = test_args();
+        args.size = 2;
+        let app = App::new(&args, 160, 48);
+        let output = render_to_string(&app, 160, 48);
+        assert!(output.contains('█'), "scaled render should contain block chars");
+    }
+
+    #[test]
+    fn test_render_scaled_size_3_small_terminal() {
+        // Should not panic even if terminal is smaller than scaled clock
+        let mut args = test_args();
+        args.size = 3;
+        let app = App::new(&args, 40, 10);
+        let _output = render_to_string(&app, 40, 10);
+    }
 }

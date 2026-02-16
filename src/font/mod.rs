@@ -263,6 +263,53 @@ mod tests {
     }
 
     #[test]
+    fn test_scale_lines_factor_1_is_identity() {
+        let lines = render_time_string("12:34", false);
+        let scaled = scale_lines(&lines, 1);
+        assert_eq!(lines, scaled);
+    }
+
+    #[test]
+    fn test_scale_lines_factor_2_doubles_dimensions() {
+        let lines = render_time_string("0", false);
+        let scaled = scale_lines(&lines, 2);
+        // Height doubles
+        assert_eq!(scaled.len(), GLYPH_HEIGHT * 2);
+        // Width doubles
+        let original_width = lines[0].chars().count();
+        let scaled_width = scaled[0].chars().count();
+        assert_eq!(scaled_width, original_width * 2);
+    }
+
+    #[test]
+    fn test_scale_lines_vertical_repetition() {
+        let lines = render_time_string("0", false);
+        let scaled = scale_lines(&lines, 3);
+        // Each original line should appear 3 times consecutively
+        for (i, original_line) in lines.iter().enumerate() {
+            let expected: String = original_line.chars().flat_map(|ch| std::iter::repeat_n(ch, 3)).collect();
+            for j in 0..3 {
+                assert_eq!(scaled[i * 3 + j], expected, "row {} repeat {} mismatch", i, j);
+            }
+        }
+    }
+
+    #[test]
+    fn test_scaled_rendered_width() {
+        let base = rendered_width("12:34");
+        assert_eq!(scaled_rendered_width("12:34", 1), base);
+        assert_eq!(scaled_rendered_width("12:34", 2), base * 2);
+        assert_eq!(scaled_rendered_width("12:34", 3), base * 3);
+    }
+
+    #[test]
+    fn test_scaled_glyph_height() {
+        assert_eq!(scaled_glyph_height(1), GLYPH_HEIGHT);
+        assert_eq!(scaled_glyph_height(2), GLYPH_HEIGHT * 2);
+        assert_eq!(scaled_glyph_height(5), GLYPH_HEIGHT * 5);
+    }
+
+    #[test]
     fn test_hide_colons_preserves_width() {
         let visible = render_time_string("12:34:56", false);
         let hidden = render_time_string("12:34:56", true);
