@@ -1,18 +1,22 @@
-PREFIX  ?= /usr
-BINDIR   = $(DESTDIR)$(PREFIX)/bin
-MANDIR   = $(DESTDIR)$(PREFIX)/share/man/man1
-LICDIR   = $(DESTDIR)$(PREFIX)/share/licenses/stardial
+PREFIX     ?= /usr
+BINDIR      = $(DESTDIR)$(PREFIX)/bin
+MANDIR      = $(DESTDIR)$(PREFIX)/share/man/man1
+LICDIR      = $(DESTDIR)$(PREFIX)/share/licenses/stardial
+CARGOFLAGS ?=
 
-BINARY   = target/release/stardial
+BINARY      = target/release/stardial
 
-.PHONY: all build install uninstall clean
+.PHONY: all build check install uninstall clean
 
 all: build
 
 build:
-	cargo build --release
+	cargo build --release $(CARGOFLAGS)
 
-install: build
+check:
+	cargo test $(CARGOFLAGS)
+
+install:
 	install -Dm755 $(BINARY)          $(BINDIR)/stardial
 	install -Dm644 man/stardial.1     $(MANDIR)/stardial.1
 	install -Dm644 LICENSE            $(LICDIR)/LICENSE
