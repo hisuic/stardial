@@ -56,7 +56,7 @@ impl<'a> Widget for ClockWidget<'a> {
         };
 
         let lines = font::render_time_string(&display_str);
-        let text_width = lines.first().map(|l| l.chars().count()).unwrap_or(0) as u16;
+        let text_width = font::rendered_width(&display_str) as u16;
         let text_height = font::GLYPH_HEIGHT as u16;
 
         // Center the clock, slightly above center

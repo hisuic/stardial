@@ -55,6 +55,7 @@ fn main() -> Result<()> {
 
     let size = terminal.size()?;
     let mut app = App::new(&args, size.width, size.height);
+    tracing::info!("theme: {}, size: {}x{}", app.theme.name, size.width, size.height);
 
     let result = run_loop(&mut terminal, &mut app);
 
