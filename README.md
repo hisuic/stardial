@@ -84,17 +84,35 @@ stardial --log /tmp/stardial.log
 - Ratatui's diff-based rendering minimizes terminal writes
 - CPU usage typically <1% on modern hardware
 
-## Building
+## Installation
+
+### From source
 
 ```bash
-cargo build --release
+make
+sudo make install
 ```
 
-Binary at `target/release/stardial`.
+This installs:
+- `/usr/bin/stardial`
+- `/usr/share/man/man1/stardial.1`
+- `/usr/share/licenses/stardial/LICENSE`
 
-## Arch Linux (AUR) Packaging
+To customize the prefix:
 
-A template PKGBUILD is provided at `pkg/PKGBUILD`. To build:
+```bash
+make install PREFIX=/usr/local DESTDIR=/tmp/pkg
+```
+
+To uninstall:
+
+```bash
+sudo make uninstall
+```
+
+### Arch Linux (AUR)
+
+A template PKGBUILD is provided at `pkg/PKGBUILD`:
 
 ```bash
 cd pkg
@@ -106,13 +124,20 @@ makepkg -si
 - Runtime: none (static binary)
 - Build: `rust` (or `cargo`)
 
-### Generating .SRCINFO
+## Man page
 
 ```bash
-cd pkg
-makepkg --printsrcinfo > .SRCINFO
+man stardial
 ```
+
+## Releases
+
+Tagged releases follow semver: `v0.1.0`, `v0.2.0`, etc.
 
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE).
+
+## Links
+
+- Repository: <https://github.com/hisuic/stardial>
