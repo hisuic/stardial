@@ -59,6 +59,10 @@ pub struct Args {
     #[arg(long, default_value_t = 40, value_parser = clap::value_parser!(u32).range(0..=100))]
     pub stars: u32,
 
+    /// Clock face size multiplier (1-5)
+    #[arg(long, default_value_t = 1, value_parser = clap::value_parser!(u32).range(1..=5))]
+    pub size: u32,
+
     /// Random seed for deterministic visuals
     #[arg(long)]
     pub seed: Option<u64>,
@@ -144,6 +148,7 @@ mod tests {
             theme: "void".into(),
             color: None,
             no_effects: false,
+            size: 1,
             stars: 40,
             seed: None,
             demo: false,
