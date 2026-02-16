@@ -1,1 +1,8 @@
 /target
+/pkg/src/
+/pkg/pkg/
+/pkg/*.pkg.tar.*
+/pkg/*.src.tar.*
+/pkg/*.tar.gz
+/pkg/*.tar.xz
+/pkg/*.tar.zst
