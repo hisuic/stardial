@@ -4,7 +4,7 @@ pkgver=0.1.0
 pkgrel=1
 pkgdesc="A space-anime themed terminal clock (tty-clock superset)"
 arch=('x86_64')
-url="https://github.com/hisui/stardial"
+url="https://github.com/hisuic/stardial"
 license=('MIT')
 makedepends=('cargo')
 # source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
@@ -12,12 +12,11 @@ makedepends=('cargo')
 
 build() {
   cd "$srcdir/$pkgname-$pkgver"
-  cargo build --release --locked
+  make
 }
 
 package() {
   cd "$srcdir/$pkgname-$pkgver"
-  install -Dm755 "target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
+  make install DESTDIR="$pkgdir"
   install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
-  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
