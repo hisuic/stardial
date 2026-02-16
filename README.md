@@ -112,17 +112,34 @@ sudo make uninstall
 
 ### Arch Linux (AUR)
 
-A template PKGBUILD is provided at `pkg/PKGBUILD`:
-
 ```bash
 cd pkg
 makepkg -si
 ```
 
+#### Clean chroot build (recommended for verification)
+
+```bash
+# Install devtools if not present
+sudo pacman -S devtools
+
+# Build in a clean chroot
+cd pkg
+extra-x86_64-build
+```
+
+#### Verify with namcap
+
+```bash
+cd pkg
+namcap PKGBUILD
+namcap stardial-*.pkg.tar.zst
+```
+
 ### Dependencies
 
-- Runtime: none (static binary)
-- Build: `rust` (or `cargo`)
+- Runtime: `gcc-libs` (glibc/libgcc — dynamically linked)
+- Build: `cargo`
 
 ## Man page
 
