@@ -234,4 +234,17 @@ mod tests {
         assert_eq!(g[0], "█▀▀▀█");
         assert_eq!(g[4], "█▄▄▄█");
     }
+
+    #[test]
+    fn test_hide_colons_preserves_width() {
+        let visible = render_time_string("12:34:56", false);
+        let hidden = render_time_string("12:34:56", true);
+        for row in 0..GLYPH_HEIGHT {
+            assert_eq!(
+                visible[row].chars().count(),
+                hidden[row].chars().count(),
+                "row {row} width differs between visible and hidden colons"
+            );
+        }
+    }
 }
