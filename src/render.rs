@@ -49,9 +49,10 @@ impl<'a> Widget for ClockWidget<'a> {
         let time_str = now.format(&app.time_format).to_string();
 
         let hide_colons = app.blink && !app.blink_visible;
-        let lines = font::render_time_string(&time_str, hide_colons);
-        let text_width = font::rendered_width(&time_str) as u16;
-        let text_height = font::GLYPH_HEIGHT as u16;
+        let base_lines = font::render_time_string(&time_str, hide_colons);
+        let lines = font::scale_lines(&base_lines, app.scale_factor);
+        let text_width = font::scaled_rendered_width(&time_str, app.scale_factor) as u16;
+        let text_height = font::scaled_glyph_height(app.scale_factor) as u16;
 
         // Center the clock, slightly above center
         let cx = area.x + area.width.saturating_sub(text_width) / 2;
@@ -231,6 +232,7 @@ mod tests {
             theme: "void".into(),
             color: None,
             no_effects: true,
+            size: 1,
             stars: 0,
             seed: Some(42),
             demo: false,
@@ -265,5 +267,23 @@ mod tests {
         let args = test_args();
         let app = App::new(&args, 20, 5);
         let _output = render_to_string(&app, 20, 5);
+    }
+
+    #[test]
+    fn test_render_scaled_size_2() {
+        let mut args = test_args();
+        args.size = 2;
+        let app = App::new(&args, 160, 48);
+        let output = render_to_string(&app, 160, 48);
+        assert!(output.contains('█'), "scaled render should contain block chars");
+    }
+
+    #[test]
+    fn test_render_scaled_size_3_small_terminal() {
+        // Should not panic even if terminal is smaller than scaled clock
+        let mut args = test_args();
+        args.size = 3;
+        let app = App::new(&args, 40, 10);
+        let _output = render_to_string(&app, 40, 10);
     }
 }
