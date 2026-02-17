@@ -9,6 +9,6 @@ pkgbase = stardial
 	depends = gcc-libs
 	options = !lto
 	source = stardial-0.1.0.tar.gz::https://github.com/hisuic/stardial/archive/v0.1.0.tar.gz
-	sha256sums = SKIP
+	sha256sums = 2d84aadba7c3d65bc670c0276419809eff960675b7ad4332ebcf91f08b69150f
 
 pkgname = stardial
