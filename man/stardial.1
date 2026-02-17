@@ -1,0 +1,120 @@
+.TH STARDIAL 1 "2026-02-17" "stardial 0.1.0" "User Commands"
+.SH NAME
+stardial \- a space-anime themed terminal clock
+.SH SYNOPSIS
+.B stardial
+[\fIOPTIONS\fR]
+.SH DESCRIPTION
+.B stardial
+is a tty-clock superset with starfield backgrounds, color themes, and gentle
+visual effects.
+It displays a large block-character clock in the terminal with an animated
+starfield background.
+.PP
+Press \fBq\fR or \fBEsc\fR to quit. \fBCtrl-C\fR also works.
+.SH OPTIONS
+.TP
+.B \-\-format \fIFMT\fR
+Time format string using chrono syntax. Default: \fB%H:%M:%S\fR.
+.TP
+.B \-\-twelve
+Use 12-hour format. Conflicts with \fB\-\-twentyfour\fR.
+.TP
+.B \-\-twentyfour
+Use 24-hour format (default).
+.TP
+.B \-\-date
+Show date line below the clock.
+.TP
+.B \-\-no\-seconds
+Hide seconds from the display.
+.TP
+.B \-\-blink
+Blink the colon separator.
+.TP
+.B \-\-fps \fIN\fR
+Target frames per second, 1\-60. Default: 30.
+.TP
+.B \-\-theme \fINAME\fR
+Color theme: \fBvoid\fR (default), \fBnebula\fR, \fBluna\fR, \fBsolar\fR.
+.TP
+.B \-\-color \fICOLOR\fR
+Override primary accent color (name or #hex).
+.TP
+.B \-\-no\-effects
+Disable all background effects (stars, shooting stars, scanlines).
+.TP
+.B \-\-stars \fIN\fR
+Star density, 0\-100. Default: 40.
+.TP
+.B \-\-size \fIN\fR
+Clock face size multiplier, 1\-5. Default: 1.
+.TP
+.B \-\-seed \fIN\fR
+Random seed for deterministic visuals.
+.TP
+.B \-\-demo
+Run a scripted demo loop cycling through themes and options.
+.TP
+.B \-\-log \fIFILE\fR
+Write debug/trace logs to the specified file.
+.TP
+.B \-h\fR, \fB\-\-help
+Print help information.
+.TP
+.B \-V\fR, \fB\-\-version
+Print version information.
+.SH THEMES
+.TS
+allbox;
+l l l.
+Theme	Vibe	Accent
+void	Deep space cyan	#00ffff
+nebula	Purple-pink haze	#ff6ac1
+luna	Silver moonlight	#c8d2f0
+solar	Golden sun	#ffc832
+.TE
+.SH EXAMPLES
+.PP
+Default 24h clock:
+.RS
+.B stardial
+.RE
+.PP
+12-hour with date:
+.RS
+.B stardial \-\-twelve \-\-date
+.RE
+.PP
+Nebula theme, no seconds, blinking colon:
+.RS
+.B stardial \-\-theme nebula \-\-blink \-\-no\-seconds
+.RE
+.PP
+Custom color and dense starfield:
+.RS
+.B stardial \-\-color '#ff6ac1' \-\-stars 80
+.RE
+.PP
+Larger clock (2x):
+.RS
+.B stardial \-\-size 2
+.RE
+.SH EXIT STATUS
+.TP
+.B 0
+Successful operation (including \fB\-\-help\fR and \fB\-\-version\fR).
+.TP
+.B 1
+Runtime error.
+.TP
+.B 2
+Invalid command-line arguments.
+.SH AUTHORS
+hisui
+.SH LICENSE
+MIT License. See the LICENSE file in the source distribution.
+.SH SEE ALSO
+.BR tty-clock (1)
+.PP
+Source code: \fIhttps://github.com/hisuic/stardial\fR

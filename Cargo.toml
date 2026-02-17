@@ -5,6 +5,7 @@ edition = "2021"
 description = "A space-anime themed terminal clock — superset of tty-clock"
 license = "MIT"
 authors = ["hisui"]
+repository = "https://github.com/hisuic/stardial"
 
 [dependencies]
 # TUI framework (ratatui includes crossterm backend)
