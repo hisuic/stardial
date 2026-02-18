@@ -1,6 +1,10 @@
 # stardial
 
-A space-anime themed terminal clock — a strict superset of tty-clock, with starfield backgrounds, themes, and gentle effects.
+A space-anime themed terminal clock, with starfield backgrounds, themes, and gentle effects.
+
+<img width="1613" height="591" alt="Image" src="https://github.com/user-attachments/assets/85b55574-8358-46b8-a962-c78b736781fa" />
+
+![Image](https://github.com/user-attachments/assets/41af1a18-f02f-49f7-8514-00ed8fb43dc1)
 
 ## Quickstart
 
