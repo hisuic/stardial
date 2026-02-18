@@ -2,7 +2,7 @@
 
 A space-anime themed terminal clock, with starfield backgrounds, themes, and gentle effects.
 
-<img width="1613" height="591" alt="Image" src="https://github.com/user-attachments/assets/85b55574-8358-46b8-a962-c78b736781fa" />
+<img width="800" alt="Image" src="https://github.com/user-attachments/assets/85b55574-8358-46b8-a962-c78b736781fa" />
 
 ## Demo
 
