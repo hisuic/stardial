@@ -4,6 +4,8 @@ A space-anime themed terminal clock, with starfield backgrounds, themes, and gen
 
 <img width="1613" height="591" alt="Image" src="https://github.com/user-attachments/assets/85b55574-8358-46b8-a962-c78b736781fa" />
 
+## Demo
+
 ![Image](https://github.com/user-attachments/assets/41af1a18-f02f-49f7-8514-00ed8fb43dc1)
 
 ## Quickstart
