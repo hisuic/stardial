@@ -1,0 +1,44 @@
+name: stardial
+base: core24
+version: '0.1.0'
+summary: Space-anime themed terminal clock — superset of tty-clock
+description: |
+  A space-anime themed terminal clock with parallax starfields,
+  shooting stars, CRT scanline overlay, and customizable themes.
+
+  Features:
+  - 7-segment style digits with size scaling (1-5x)
+  - 12/24-hour format with optional seconds and date
+  - 4 built-in themes: void, nebula, luna, solar
+  - Custom hex colors, animated starfield background
+  - Scripted demo mode
+
+  Usage: stardial [OPTIONS]
+    stardial --theme nebula --size 2
+    stardial --twelve --date --no-effects
+
+title: Stardial
+grade: stable
+confinement: strict
+license: MIT
+contact: https://github.com/hisuic/stardial/issues
+issues: https://github.com/hisuic/stardial/issues
+source-code: https://github.com/hisuic/stardial
+website: https://github.com/hisuic/stardial
+
+parts:
+  stardial:
+    plugin: rust
+    source: .
+    build-packages:
+      - gcc
+    override-build: |
+      cargo build --release --locked
+      install -Dm755 target/release/stardial "$CRAFT_PART_INSTALL/bin/stardial"
+      install -Dm644 man/stardial.1 "$CRAFT_PART_INSTALL/share/man/man1/stardial.1"
+
+apps:
+  stardial:
+    command: bin/stardial
+    plugs:
+      - home

@@ -1,4 +1,5 @@
 /target
+/*.snap
 /pkg/src/
 /pkg/pkg/
 /pkg/*.pkg.tar.*
