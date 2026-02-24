@@ -38,6 +38,7 @@ sudo snap install stardial
 ### Homebrew
 
 ```bash
+brew tap hisuic/stardial
 brew install stardial
 ```
 
