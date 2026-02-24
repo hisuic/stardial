@@ -11,7 +11,7 @@ A space-anime themed terminal clock, with starfield backgrounds, themes, and gen
 ![Image](https://github.com/user-attachments/assets/41af1a18-f02f-49f7-8514-00ed8fb43dc1)
 
 ## Quickstart
-```
+```ruby
 # Default clock
 $ stardial
 
