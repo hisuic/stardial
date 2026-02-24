@@ -10,6 +10,21 @@ A space-anime themed terminal clock, with starfield backgrounds, themes, and gen
 
 ![Image](https://github.com/user-attachments/assets/41af1a18-f02f-49f7-8514-00ed8fb43dc1)
 
+## Quickstart
+```
+# Default clock
+$ stardial
+
+# Large nebula clock with dense stars and blinking colon
+$ stardial --size 3 --theme nebula --stars 100 --blink
+
+# Solar theme, no effects, with date display
+$ stardial --size 3 --theme solar --no-effects --date
+
+# 12-hour luna clock with dense stars and blinking colon
+$ stardial --size 2 --theme luna --stars 100 --blink --twelve
+```
+
 ## Features
 
 - Big block-character digits (7-segment style) with adjustable size (`--size 1`-`5`)
