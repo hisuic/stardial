@@ -2,19 +2,13 @@
 
 A space-anime themed terminal clock, with starfield backgrounds, themes, and gentle effects.
 
-<img width="800" alt="Image" src="https://github.com/user-attachments/assets/85b55574-8358-46b8-a962-c78b736781fa" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/85b55574-8358-46b8-a962-c78b736781fa" alt="stardial" style="width: 60%;">
+</p>
 
 ## Demo
 
 ![Image](https://github.com/user-attachments/assets/41af1a18-f02f-49f7-8514-00ed8fb43dc1)
-
-## Quickstart
-
-```bash
-cargo run --release
-```
-
-Press `q` or `Esc` to quit.
 
 ## Features
 
@@ -32,6 +26,54 @@ Press `q` or `Esc` to quit.
 - Handles terminal resize gracefully
 - Panic-safe terminal restoration
 - Optional debug logging to file
+
+## Installation
+
+### Snap
+
+```bash
+sudo snap install stardial
+```
+
+### Homebrew
+
+```bash
+brew install stardial
+```
+
+### Arch Linux (AUR)
+
+```bash
+yay -S stardial
+```
+
+### From source
+
+Requires the Rust toolchain (`cargo`).
+
+```bash
+make
+sudo make install
+```
+
+This installs:
+- `/usr/bin/stardial`
+- `/usr/share/man/man1/stardial.1`
+- `/usr/share/licenses/stardial/LICENSE`
+
+To customize the prefix:
+
+```bash
+make install PREFIX=/usr/local DESTDIR=/tmp/pkg
+```
+
+To uninstall:
+
+```bash
+sudo make uninstall
+```
+
+For AUR manual builds, clean chroot builds, and namcap verification, see [docs/packaging.md](docs/packaging.md).
 
 ## Usage
 
@@ -65,6 +107,7 @@ stardial --demo
 
 # Debug logging
 stardial --log /tmp/stardial.log
+
 ```
 
 ## Themes
@@ -89,63 +132,6 @@ stardial --log /tmp/stardial.log
 - Starfield uses simple float math, no allocations per frame
 - Ratatui's diff-based rendering minimizes terminal writes
 - CPU usage typically <1% on modern hardware
-
-## Installation
-
-### From source
-
-```bash
-make
-sudo make install
-```
-
-This installs:
-- `/usr/bin/stardial`
-- `/usr/share/man/man1/stardial.1`
-- `/usr/share/licenses/stardial/LICENSE`
-
-To customize the prefix:
-
-```bash
-make install PREFIX=/usr/local DESTDIR=/tmp/pkg
-```
-
-To uninstall:
-
-```bash
-sudo make uninstall
-```
-
-### Arch Linux (AUR)
-
-```bash
-cd pkg
-makepkg -si
-```
-
-#### Clean chroot build (recommended for verification)
-
-```bash
-# Install devtools if not present
-sudo pacman -S devtools
-
-# Build in a clean chroot
-cd pkg
-extra-x86_64-build
-```
-
-#### Verify with namcap
-
-```bash
-cd pkg
-namcap PKGBUILD
-namcap stardial-*.pkg.tar.zst
-```
-
-### Dependencies
-
-- Runtime: `gcc-libs` (glibc/libgcc — dynamically linked)
-- Build: `cargo`
 
 ## Man page
 
