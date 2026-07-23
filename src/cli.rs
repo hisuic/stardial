@@ -67,10 +67,6 @@ pub struct Args {
     #[arg(long)]
     pub seed: Option<u64>,
 
-    /// Run a scripted demo loop
-    #[arg(long)]
-    pub demo: bool,
-
     /// Write debug logs to file
     #[arg(long, value_name = "FILE")]
     pub log: Option<String>,
@@ -151,7 +147,6 @@ mod tests {
             size: 1,
             stars: 40,
             seed: None,
-            demo: false,
             log: None,
         }
     }
