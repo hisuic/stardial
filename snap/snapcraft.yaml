@@ -11,7 +11,6 @@ description: |
   - 12/24-hour format with optional seconds and date
   - 4 built-in themes: void, nebula, luna, solar
   - Custom hex colors, animated starfield background
-  - Scripted demo mode
 
   Usage: stardial [OPTIONS]
     stardial --theme nebula --size 2
