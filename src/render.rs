@@ -235,7 +235,6 @@ mod tests {
             size: 1,
             stars: 0,
             seed: Some(42),
-            demo: false,
             log: None,
         }
     }
