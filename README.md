@@ -37,7 +37,6 @@ $ stardial --size 2 --theme luna --stars 100 --blink --twelve
 - Shooting star effect (rare, tasteful)
 - Scanline overlay for CRT/anime feel
 - Deterministic visuals with `--seed`
-- Scripted demo loop with `--demo`
 - Handles terminal resize gracefully
 - Panic-safe terminal restoration
 - Optional debug logging to file
@@ -117,9 +116,6 @@ stardial --no-effects
 
 # Deterministic starfield for screenshots
 stardial --seed 42 --fps 24
-
-# Run scripted demo loop
-stardial --demo
 
 # Debug logging
 stardial --log /tmp/stardial.log
